@@ -10,29 +10,32 @@
     <link rel="stylesheet" href="~/ViewTask.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
 </head>
-<body>
+<body >
     <header>
-        <nav class="border-b bg-[#2c2e35] p-2.5 shadow sm:flex sm:items-center sm:justify-between">
+        <nav class="fixed top-0 left-0 z-50 w-full border-b bg-[#2c2e35] p-2.5 shadow sm:flex sm:items-center sm:justify-between">>
                 <a asp-area="" asp-controller="Home" asp-action="Index"><img class="emblem" src="~/Photo/Emblem.png"/></a>
                 <div class="hidden w-full justify-between sm:inline-flex">
                     <ul class="hidden space-x-6 sm:flex">
                         <li class="text-white">
-                            <a class="text-white !no-underline" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="text-white !no-underline" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
                         </li>
                         <li class="nav-item">
-                            <a class="text-white !no-underline" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="text-white !no-underline" asp-area="" asp-controller="Home" asp-action="Privacy">Про нас</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="text-white !no-underline" asp-area="" asp-controller="Rating" asp-action="Index">Рейтинг</a>
                         </li>
                     </ul>
                 </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="animate-fade-in pt-24">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted bg-white">
         <div class="container">
             &copy; 2026 - ViewTask - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
