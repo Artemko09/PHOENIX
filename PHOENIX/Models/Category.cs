@@ -10,7 +10,7 @@
         public double MaxWeight { get; set; }
         public Discipline DisciplineType { get; set; }
         public Gender Gender { get; set; }
-        public virtual ICollection<Sportsman> Sportsmen { get; set; } = new List<Sportsman>();
+        public virtual ICollection<ApplicationUser> Sportsmen { get; set; } = new List<ApplicationUser>();
     }
 
     public enum Discipline

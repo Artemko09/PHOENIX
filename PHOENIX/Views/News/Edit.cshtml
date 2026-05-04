@@ -1,0 +1,37 @@
+﻿@model PHOENIX.Models.News
+
+<div class="mx-auto max-w-3 px-4 py-12 sm:max-w-3xl">
+    <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl">
+        <div class="bg-amber-500 px-8 py-6">
+            <h2 class="text-2xl font-bold text-white">Редагувати новину</h2>
+        </div>
+        
+        <form asp-action="Edit" class="space-y-6 p-8">
+            <div asp-validation-summary="ModelOnly" class="mb-4 text-sm text-red-500"></div>
+            
+            @* Важливо: передаємо Id та дату створення, щоб вони не занулилися *@
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreatedAt" />
+            <input type="hidden" asp-for="AuthorId" />
+
+            <div>
+                <label asp-for="Title" class="mb-2 block text-sm font-semibold text-gray-700">Заголовок</label>
+                <input asp-for="Title" class="w-full rounded-lg border border-gray-300 px-4 py-3 transition outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500" />
+                <span asp-validation-for="Title" class="mt-1 text-xs text-red-500"></span>
+            </div>
+
+            <div>
+                <label asp-for="Content" class="mb-2 block text-sm font-semibold text-gray-700">Текст новини</label>
+                <textarea asp-for="Content" rows="8" class="w-full rounded-lg border border-gray-300 px-4 py-3 transition outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-500"></textarea>
+                <span asp-validation-for="Content" class="mt-1 text-xs text-red-500"></span>
+            </div>
+
+            <div class="flex items-center justify-between border-t border-gray-100 pt-4">
+                <a asp-action="Index" class="font-medium text-gray-500 transition hover:text-gray-700">Скасувати</a>
+                <button type="submit" class="rounded-lg bg-amber-500 px-8 py-3 font-bold text-white shadow-lg transition duration-200 hover:bg-amber-600 hover:shadow-amber-200">
+                    Зберегти зміни
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

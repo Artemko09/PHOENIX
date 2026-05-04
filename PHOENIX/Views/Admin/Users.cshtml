@@ -1,0 +1,51 @@
+﻿@model IEnumerable<PHOENIX.Models.ApplicationUser>
+
+<div class="mx-auto max-w-6xl px-4 py-10">
+    <div class="mb-8 flex items-center justify-between">
+        <h1 class="text-3xl font-black tracking-tighter text-gray-900">РЕЄСТР АТЛЕТІВ</h1>
+        <span class="rounded-full bg-emerald-100 px-4 py-1 text-sm font-bold text-emerald-700">
+            Всього: @Model.Count()
+        </span>
+    </div>
+
+    <div class="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-2xl">
+        <table class="w-full border-collapse text-left">
+            <thead class="bg-gray-900 text-xs tracking-[0.2em] text-white uppercase">
+                <tr>
+                    <th class="px-6 py-5">Прізвище та ім'я</th>
+                    <th class="px-6 py-5">Поточний пояс</th>
+                    <th class="px-6 py-5 text-right">Змінити атестацію</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                @foreach (var user in Model)
+                {
+                    <tr class="transition duration-150 hover:bg-gray-50">
+                        <td class="px-6 py-4">
+                            <div class="text-lg font-bold text-gray-900">@user.Name</div>
+                            <div class="text-xs font-medium text-gray-400">@user.Email</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center rounded-lg border border-gray-200 bg-gray-50 px-3 py-1 text-xs font-black text-gray-700">
+                                @user.SportsRank.GetDisplayName()
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <form asp-action="UpdateRank" method="post" class="inline-flex items-center gap-2">
+                                <input type="hidden" name="userId" value="@user.Id" />
+                                <select name="newRank" asp-items="Html.GetEnumSelectList<Rank>()"
+                                        class="text-sm py-1.5 pl-3 pr-8 border-gray-200 rounded-xl focus:ring-emerald-500 focus:border-emerald-500 transition-all">
+                                </select>
+                                <button type="submit" class="rounded-xl bg-gray-900 p-2 text-white shadow-lg transition-colors hover:bg-emerald-600">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

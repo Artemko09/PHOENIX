@@ -1,0 +1,45 @@
+﻿@model PHOENIX.Models.News
+
+@{
+    ViewData["Title"] = "Нова новина";
+}
+
+<div class="mx-auto max-w-3xl px-4 py-12">
+    <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-xl">
+        <div class="bg-gray-800 px-8 py-6">
+            <h2 class="text-2xl font-bold text-white">Створити публікацію</h2>
+        </div>
+        
+        <form asp-action="Create" class="space-y-6 p-8">
+            <div asp-validation-summary="ModelOnly" class="mb-4 text-sm text-red-500"></div>
+
+            <div>
+                <label asp-for="Title" class="mb-2 block text-sm font-semibold text-gray-700">Заголовок</label>
+                <input asp-for="Title" class="w-full rounded-lg border border-gray-300 px-4 py-3 transition outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500" placeholder="Введіть заголовок новини" />
+                <span asp-validation-for="Title" class="mt-1 text-xs text-red-500"></span>
+            </div>
+
+            <div>
+                <label asp-for="Content" class="mb-2 block text-sm font-semibold text-gray-700">Текст новини</label>
+                <textarea asp-for="Content" rows="8" class="w-full rounded-lg border border-gray-300 px-4 py-3 transition outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500" placeholder="Про що хочете розповісти спортсменам?"></textarea>
+                <span asp-validation-for="Content" class="mt-1 text-xs text-red-500"></span>
+            </div>
+
+            <div class="flex items-center justify-between pt-4">
+                <a asp-action="Index" class="flex items-center font-medium text-gray-500 transition hover:text-gray-700">
+                    <svg class="mr-1 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Назад
+                </a>
+                <button type="submit" class="rounded-lg bg-emerald-600 px-8 py-3 font-bold text-white shadow-lg transition duration-200 hover:bg-emerald-700 hover:shadow-emerald-200">
+                    Опублікувати
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

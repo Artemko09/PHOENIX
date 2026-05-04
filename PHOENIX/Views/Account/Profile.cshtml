@@ -1,0 +1,99 @@
+﻿@model PHOENIX.Models.ApplicationUser
+
+@{
+    ViewData["Title"] = "Мій профіль";
+    
+    // Визначаємо колір фону залежно від рангу (поясу)
+    string beltHeaderColor = Model.SportsRank switch
+    {
+        Rank.White => "bg-gray-200",
+        Rank.WhiteStrip => "bg-gray-300",
+        Rank.Yellow => "bg-yellow-400",
+        Rank.Orange => "bg-orange-500",
+        Rank.Green => "bg-green-600",
+        Rank.Blue => "bg-blue-600",
+        Rank.Brown1 or Rank.Brown2 or Rank.Brown3 => "bg-amber-800",
+        Rank.Black => "bg-black",
+        _ => "bg-gray-100"
+    };
+}
+
+<div class="mx-auto max-w-4xl px-4 py-12">
+    <div class="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-2xl">
+        
+        @* Верхня декоративна панель кольору поясу *@
+        <div class="h-32 @beltHeaderColor w-full transition-colors duration-500"></div>
+
+        <div class="px-8 pb-10">
+            <div class="relative -mt-16 mb-8 flex flex-col items-center gap-6 md:flex-row md:items-end">
+                @* Аватарка (перша літера імені) *@
+                <div class="h-32 w-32 rounded-2xl bg-white p-2 shadow-lg">
+                    <div class="flex h-full w-full items-center justify-center rounded-xl bg-slate-800 text-5xl font-black tracking-tighter text-white">
+                        @Model.Name?[0]
+                    </div>
+                </div>
+
+                @* Основна інфо: Ім'я та Пошта *@
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-4xl font-black tracking-tight text-gray-900">@Model.Name</h1>
+                    <p class="font-medium text-gray-500">@Model.Email</p>
+                </div>
+
+                @* Кнопка редагування *@
+                <div class="md:pb-2">
+                    <a asp-action="EditProfile" class="inline-flex items-center rounded-xl border-2 border-gray-900 bg-white px-6 py-2.5 font-bold text-gray-900 shadow-sm transition duration-200 hover:bg-gray-900 hover:text-white">
+                        <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                        Редагувати
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                @* Ліва колонка: Деталі *@
+                <div class="space-y-6 md:col-span-2">
+                    <div class="grid grid-cols-2 gap-6 rounded-2xl bg-gray-50 p-6">
+                        <div>
+                            <span class="block text-xs font-bold tracking-widest text-gray-400 uppercase">Дата народження</span>
+                            <p class="text-lg font-bold text-gray-800">@Model.BirthDate.ToShortDateString()</p>
+                            <p class="text-sm text-gray-500 text-black">(@Model.Age років)</p>
+                        </div>
+                        <div>
+                            <span class="block text-xs font-bold tracking-widest text-gray-400 uppercase">Стать</span>
+                            <p class="text-lg font-bold text-gray-800">
+                                @(Model.Gender == Gender.Male ? "Чоловіча" : "Жіноча")
+                            </p>
+                        </div>
+                    </div>
+
+                    @* Категорія *@
+                    <div class="rounded-2xl border border-emerald-100 bg-emerald-50 p-6">
+                        <span class="mb-1 block text-xs font-bold tracking-widest text-emerald-600 uppercase">Поточна категорія</span>
+                        <p class="text-2xl font-black text-emerald-900">
+                            @(Model.Category?.Name ?? "Не призначено")
+                        </p>
+                    </div>
+                </div>
+
+                @* Права колонка: Ранг (Пояс) *@
+                <div class="flex flex-col items-center justify-center rounded-2xl bg-gray-900 p-6 text-center text-white shadow-xl">
+                    <span class="mb-4 text-xs font-bold tracking-widest text-gray-400 uppercase">Ступінь майстерності</span>
+                    
+                    @* Візуалізація поясу *@
+                    <div class="mb-4 h-4 @beltHeaderColor w-full rounded-full border border-white/20 shadow-inner"></div>
+                    
+                    <h3 class="text-xl leading-tight font-black">
+                        @Model.SportsRank.GetDisplayName()
+                    </h3>
+                    
+                    @if (Model.SportsRank == Rank.Black)
+                    {
+                        <div class="mt-2 text-amber-400">
+                            <i class="bi bi-star-fill text-xl"></i>
+                            <p class="font-bold text-[10px] uppercase">Senpai</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
