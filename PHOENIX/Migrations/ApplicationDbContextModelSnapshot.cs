@@ -143,6 +143,41 @@ namespace PHOENIX.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PHOENIX.Models.Achievement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Place")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("PointsEarned")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Achievements");
+                });
+
             modelBuilder.Entity("PHOENIX.Models.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
@@ -1314,21 +1349,6 @@ namespace PHOENIX.Migrations
                     b.ToTable("News");
                 });
 
-            modelBuilder.Entity("PHOENIX.Models.RatingCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RatingCategories");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole<int>", null)
@@ -1378,6 +1398,17 @@ namespace PHOENIX.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PHOENIX.Models.Achievement", b =>
+                {
+                    b.HasOne("PHOENIX.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("PHOENIX.Models.ApplicationUser", b =>

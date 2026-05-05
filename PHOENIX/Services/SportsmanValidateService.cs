@@ -16,7 +16,6 @@ namespace PHOENIX.Services
             _db = db;
         }
 
-        // Новий метод: Шукає категорію за параметрами
         public async Task<Category?> FindCategoryAsync(int age, double weight, Gender gender)
         {
             return await _db.Categories
@@ -26,7 +25,6 @@ namespace PHOENIX.Services
                     weight >= c.MinWeight && weight <= c.MaxWeight);
         }
 
-        // Оновлений метод валідації
         public async Task<List<string>> ValidateSportsmanAsync(ApplicationUser s)
         {
             var errors = new List<string>();
@@ -34,7 +32,6 @@ namespace PHOENIX.Services
             if (s.BirthDate > DateTime.Today)
                 errors.Add("Дата народження не може бути у майбутньому.");
 
-            // Перевіряємо, чи взагалі існує категорія для таких даних
             var suitableCategory = await FindCategoryAsync(s.Age, s.Weight, s.Gender);
 
             if (suitableCategory == null)
@@ -43,7 +40,6 @@ namespace PHOENIX.Services
             }
             else if (s.CategoryId != 0 && s.CategoryId != suitableCategory.Id)
             {
-                // Якщо категорія вже була призначена, але дані змінилися так, що вона більше не підходить
                 errors.Add($"Поточна категорія не відповідає вашим даним. Вам підходить: {suitableCategory.Name}");
             }
 

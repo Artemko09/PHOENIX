@@ -18,14 +18,12 @@ namespace PHOENIX.Controllers
             _userManager = userManager;
         }
 
-        // Доступно всім
         public async Task<IActionResult> Index()
         {
             var news = await _db.News.OrderByDescending(n => n.CreatedAt).ToListAsync();
             return View(news);
         }
 
-        // ТІЛЬКИ ДЛЯ АДМІНА
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Create() => View();
@@ -44,7 +42,6 @@ namespace PHOENIX.Controllers
             return View(news);
         }
 
-        // ГЕТ-метод для відображення форми редагування
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -56,7 +53,6 @@ namespace PHOENIX.Controllers
             return View(news);
         }
 
-        // ПОСТ-метод для збереження змін
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
@@ -81,7 +77,6 @@ namespace PHOENIX.Controllers
             return View(news);
         }
 
-        // Метод для видалення
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {

@@ -11,8 +11,8 @@ using PHOENIX.Data;
 namespace PHOENIX.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260504105744_InitialIdentity")]
-    partial class InitialIdentity
+    [Migration("20260505100650_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,6 +146,41 @@ namespace PHOENIX.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("PHOENIX.Models.Achievement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ParticipantsCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Place")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("PointsEarned")
+                        .HasColumnType("REAL");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Achievements");
+                });
+
             modelBuilder.Entity("PHOENIX.Models.ApplicationUser", b =>
                 {
                     b.Property<int>("Id")
@@ -205,6 +240,9 @@ namespace PHOENIX.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("SportsRank")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("INTEGER");
@@ -1287,19 +1325,31 @@ namespace PHOENIX.Migrations
                         });
                 });
 
-            modelBuilder.Entity("PHOENIX.Models.RatingCategory", b =>
+            modelBuilder.Entity("PHOENIX.Models.News", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("RatingCategories");
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -1353,6 +1403,17 @@ namespace PHOENIX.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("PHOENIX.Models.Achievement", b =>
+                {
+                    b.HasOne("PHOENIX.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("PHOENIX.Models.ApplicationUser", b =>
                 {
                     b.HasOne("PHOENIX.Models.Category", "Category")
@@ -1362,6 +1423,17 @@ namespace PHOENIX.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("PHOENIX.Models.News", b =>
+                {
+                    b.HasOne("PHOENIX.Models.ApplicationUser", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("PHOENIX.Models.Category", b =>

@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PHOENIX.ViewModel
 {
-    // ViewModels/EditProfileViewModel.cs
     public class EditProfileViewModel
     {
         [Required(ErrorMessage = "Ім'я обов'язкове")]

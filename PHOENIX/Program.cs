@@ -9,13 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<ISportsmanValidation, SportsmanValidationService>();
+builder.Services.AddScoped<ICalculatePointsService, CalculatePointsService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
 {
-    // Тут можна налаштувати вимоги до пароля
     options.Password.RequireDigit = false;
     options.Password.RequiredLength = 6;
     options.Password.RequireNonAlphanumeric = false;

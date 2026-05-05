@@ -27,7 +27,7 @@ namespace PHOENIX.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            ViewBag.Categories = _db.Categories.ToList(); // Для випадаючого списку
+            ViewBag.Categories = _db.Categories.ToList(); 
             return View();
         }
 
@@ -43,7 +43,7 @@ namespace PHOENIX.Controllers
                     Name = model.Name,
                     BirthDate = model.BirthDate,
                     Gender = model.Gender,
-                    CategoryId = model.CategoryId // Пряме присвоєння з форми
+                    CategoryId = model.CategoryId 
                 };
 
                 var result = await _userManager.CreateAsync(user, model.Password);
@@ -59,7 +59,7 @@ namespace PHOENIX.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken] // Захист від CSRF-атак
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -82,15 +82,12 @@ namespace PHOENIX.Controllers
 
                 if (result.Succeeded)
                 {
-                    // 1. Знаходимо об'єкт користувача в базі за його Email
                     var user = await _userManager.FindByEmailAsync(model.Email);
 
                     if (user != null)
                     {
-                        // 2. Перевіряємо, чи це ваш email (замініть на свій)
                         if (user.Email == "fedotov.dmytro@gmail.com")
                         {
-                            // 3. Перевіряємо, чи користувач вже є адміном, щоб не робити зайвих запитів
                             if (!await _userManager.IsInRoleAsync(user, "Admin"))
                             {
                                 await _userManager.AddToRoleAsync(user, "Admin");
@@ -107,15 +104,14 @@ namespace PHOENIX.Controllers
             return View(model);
         }
 
-        [Authorize] // Тільки для залогінених користувачів
+        [Authorize] 
         public async Task<IActionResult> Profile()
         {
-            // Отримуємо ID поточного користувача
             var userId = _userManager.GetUserId(User);
 
-            // Завантажуємо користувача разом із його категорією
             var user = await _db.Users
                 .Include(u => u.Category)
+                .Include(u => u.Achievements)
                 .FirstOrDefaultAsync(u => u.Id == int.Parse(userId));
 
             if (user == null)
@@ -155,13 +151,11 @@ namespace PHOENIX.Controllers
 
             if (ModelState.IsValid)
             {
-                // Оновлюємо поля
                 user.Name = model.Name;
                 user.Weight = model.Weight;
                 user.Gender = model.Gender;
                 user.CategoryId = model.CategoryId;
 
-                // Зберігаємо зміни через UserManager
                 var result = await _userManager.UpdateAsync(user);
 
                 if (result.Succeeded)
