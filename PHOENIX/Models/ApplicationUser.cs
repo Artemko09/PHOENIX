@@ -45,6 +45,7 @@ namespace PHOENIX.Models
         [Display(Name = "6 Кю (Зелений пояс)")] Green,
 
         [Display(Name = "5 Кю (Синій пояс)")] Blue,
+        [Display(Name = "4 Кю (Синій пояс з полоскою)")] BlueStrip,
 
         [Display(Name = "3 Кю (Коричневий пояс)")] Brown3,
         [Display(Name = "2 Кю (Коричневий пояс)")] Brown2,
