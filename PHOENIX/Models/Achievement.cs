@@ -20,7 +20,7 @@ namespace PHOENIX.Models
         public TournamentStatus Status { get; set; }
 
         [Display(Name = "Зайняте місце")]
-        public int Place { get; set; } // 1, 2, 3, 5, 7, 9, 11 або 0 для "У" (участь)
+        public int Place { get; set; } 
 
         [Display(Name = "Кількість учасників у категорії")]
         public int ParticipantsCount { get; set; }

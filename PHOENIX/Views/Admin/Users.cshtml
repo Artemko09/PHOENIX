@@ -33,7 +33,7 @@
                             </span>
                         </td>
                         <td class="px-6 py-4 text-center">
-                            @* Виводимо суму балів, яку ми порахували через Achievements *@
+                            
                             <span class="text-xl font-black text-emerald-600">
                                 @(user.Achievements?.Sum(a => a.PointsEarned) ?? 0)
                             </span>
@@ -43,7 +43,7 @@
                                 
                                 @if (User.IsInRole("Admin"))
                                 {
-                                    @* Кнопка швидкого додавання досягнення *@
+                                 
                                     <a asp-action="AddAchievement" asp-route-userId="@user.Id"
                                            class="inline-flex items-center gap-1 rounded-xl bg-emerald-50 px-3 py-2 text-xs font-black text-emerald-700 uppercase shadow-sm transition-all hover:bg-emerald-600 hover:text-white">
                                         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,7 +52,6 @@
                                         Досягнення
                                     </a>
 
-                                    @* Форма зміни поясу *@
                                     <form asp-action="UpdateRank" method="post" class="inline-flex items-center gap-2">
                                         <input type="hidden" name="userId" value="@user.Id" />
                                         <select name="newRank" asp-items="Html.GetEnumSelectList<Rank>()"

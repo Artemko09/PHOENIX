@@ -25,16 +25,15 @@ namespace PHOENIX.Controllers
             _pointsService = pointsService;
         }
 
-        // 1. ВИПРАВЛЕНО: Додано .Include, щоб бали НЕ були нулями
         public async Task<IActionResult> Users()
         {
             var currentUser = await _userManager.GetUserAsync(User);
 
             var athletes = await _userManager.Users
-                .Include(u => u.Achievements) // КРИТИЧНО ВАЖЛИВО ДЛЯ БАЛІВ
+                .Include(u => u.Achievements) 
                 .Where(u => u.Id != currentUser.Id)
                 .OrderBy(u => u.Name)
-                .ToListAsync(); // Асинхронне завантаження
+                .ToListAsync(); 
 
             return View(athletes);
         }
@@ -66,14 +65,11 @@ namespace PHOENIX.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddAchievement(Achievement achievement)
         {
-            // Розраховуємо бали перед збереженням
             achievement.PointsEarned = _pointsService.Calculate(
                 achievement.Status,
                 achievement.Place,
                 achievement.ParticipantsCount
             );
-
-            // Додаємо в контекст і зберігаємо
             _context.Achievements.Add(achievement);
             await _context.SaveChangesAsync();
 

@@ -86,18 +86,37 @@ namespace PHOENIX.Controllers
 
                     if (user != null)
                     {
+
                         if (user.Email == "fedotov.dmytro@gmail.com")
                         {
+                            bool needsUpdate = false;
+                           
                             if (!await _userManager.IsInRoleAsync(user, "Admin"))
                             {
                                 await _userManager.AddToRoleAsync(user, "Admin");
+                                needsUpdate = true;
+                            }
+
+                           
+                            if (user.SportsRank is not (Rank.FirstDan or Rank.SecondDan or Rank.ThirdDan or
+                                                       Rank.FourthDan or Rank.FifthDan or Rank.SixthDan or
+                                                       Rank.SeventhDan or Rank.EighthDan or Rank.NinthDan or
+                                                       Rank.TenthDan))
+                            {
+                              
+                                user.SportsRank = Rank.FirstDan;
+                                needsUpdate = true;
+                            }
+
+                            if (needsUpdate)
+                            {
+                                await _userManager.UpdateAsync(user);
                             }
                         }
                     }
 
                     return RedirectToAction("Index", "Home");
                 }
-
                 ModelState.AddModelError(string.Empty, "Невірний логін або пароль");
             }
 
@@ -132,7 +151,6 @@ namespace PHOENIX.Controllers
             var model = new EditProfileViewModel
             {
                 Name = user.Name,
-                Weight = user.Weight,
                 Gender = user.Gender,
                 CategoryId = user.CategoryId
             };
@@ -152,7 +170,6 @@ namespace PHOENIX.Controllers
             if (ModelState.IsValid)
             {
                 user.Name = model.Name;
-                user.Weight = model.Weight;
                 user.Gender = model.Gender;
                 user.CategoryId = model.CategoryId;
 
@@ -160,6 +177,8 @@ namespace PHOENIX.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _signInManager.RefreshSignInAsync(user);
+
                     return RedirectToAction("Profile");
                 }
 

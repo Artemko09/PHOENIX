@@ -51,6 +51,34 @@ namespace PHOENIX.Models
         [Display(Name = "2 Кю (Коричневий пояс)")] Brown2,
         [Display(Name = "1 Кю (Коричневий пояс)")] Brown1,
 
-        [Display(Name = "1 Дан (Чорний пояс)")] Black
+        [Display(Name = "1 Дан (Чорний пояс)")]
+        FirstDan,
+
+        [Display(Name = "2 Дан (Чорний пояс)")]
+        SecondDan,
+
+        [Display(Name = "3 Дан (Чорний пояс)")]
+        ThirdDan,
+
+        [Display(Name = "4 Дан (Чорний пояс)")]
+        FourthDan,
+
+        [Display(Name = "5 Дан (Чорний пояс)")]
+        FifthDan,
+
+        [Display(Name = "6 Дан (Чорний пояс)")]
+        SixthDan,
+
+        [Display(Name = "7 Дан (Чорний пояс)")]
+        SeventhDan,
+
+        [Display(Name = "8 Дан (Чорний пояс)")]
+        EighthDan,
+
+        [Display(Name = "9 Дан (Чорний пояс)")]
+        NinthDan,
+
+        [Display(Name = "10 Дан (Чорний пояс)")]
+        TenthDan
     }
 }

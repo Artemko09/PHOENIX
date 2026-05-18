@@ -7,7 +7,6 @@ namespace PHOENIX.Services
     {
         public double Calculate(TournamentStatus status, int place, int participants)
         {
-            // 1. Коефіцієнт статусу змагань (Колонка 1-2)
             double statusCoeff = status switch
             {
                 TournamentStatus.TrainingCamp or TournamentStatus.Attestation or
@@ -24,13 +23,11 @@ namespace PHOENIX.Services
                 _ => 1.0
             };
 
-            // 2. Спеціальні випадки: Збори та Атестація (фіксовано 50 балів)
             if (status == TournamentStatus.TrainingCamp || status == TournamentStatus.Attestation)
             {
                 return 50.0 * statusCoeff;
             }
 
-            // 3. Базові бали за місце (Колонка 3-4)
             double basePoints = place switch
             {
                 1 => 100,
@@ -40,11 +37,10 @@ namespace PHOENIX.Services
                 7 => 30,
                 9 => 25,
                 11 => 20,
-                0 => 15, // "У" (участь) кодуємо як 0
+                0 => 15, 
                 _ => 0
             };
 
-            // 4. Коефіцієнт кількості учасників (Колонка 5-6)
             double participantsCoeff = participants switch
             {
                 < 5 => 1.0,
@@ -52,10 +48,9 @@ namespace PHOENIX.Services
                 <= 16 => 1.4,
                 <= 32 => 1.6,
                 <= 64 => 1.8,
-                _ => 2.0 // Більше 65
+                _ => 2.0 
             };
 
-            // Підсумкова формула
             return basePoints * statusCoeff * participantsCoeff;
         }
     }
