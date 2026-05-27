@@ -30,6 +30,7 @@
     --color-emerald-600: oklch(59.6% 0.145 163.225);
     --color-emerald-700: oklch(50.8% 0.118 165.612);
     --color-blue-600: oklch(54.6% 0.245 262.881);
+    --color-slate-50: oklch(98.4% 0.003 247.858);
     --color-slate-200: oklch(92.9% 0.013 255.508);
     --color-slate-300: oklch(86.9% 0.022 252.894);
     --color-slate-800: oklch(27.9% 0.041 260.031);
@@ -452,6 +453,9 @@
   .m-auto {
     margin: auto;
   }
+  .-mx-4 {
+    margin-inline: calc(var(--spacing) * -4);
+  }
   .mx-0 {
     margin-inline: calc(var(--spacing) * 0);
   }
@@ -539,6 +543,9 @@
   .-mt-16 {
     margin-top: calc(var(--spacing) * -16);
   }
+  .-mt-28 {
+    margin-top: calc(var(--spacing) * -28);
+  }
   .mt-0 {
     margin-top: calc(var(--spacing) * 0);
   }
@@ -565,6 +572,9 @@
   }
   .mt-12 {
     margin-top: calc(var(--spacing) * 12);
+  }
+  .mt-16 {
+    margin-top: calc(var(--spacing) * 16);
   }
   .mt-auto {
     margin-top: auto;
@@ -1207,6 +1217,9 @@
   .bg-red-600 {
     background-color: var(--color-red-600);
   }
+  .bg-slate-50 {
+    background-color: var(--color-slate-50);
+  }
   .bg-slate-200 {
     background-color: var(--color-slate-200);
   }
@@ -1419,6 +1432,9 @@
   .pt-24 {
     padding-top: calc(var(--spacing) * 24);
   }
+  .pt-28 {
+    padding-top: calc(var(--spacing) * 28);
+  }
   .pr-8 {
     padding-right: calc(var(--spacing) * 8);
   }
@@ -1445,6 +1461,9 @@
   }
   .pb-10 {
     padding-bottom: calc(var(--spacing) * 10);
+  }
+  .pb-12 {
+    padding-bottom: calc(var(--spacing) * 12);
   }
   .pl-3 {
     padding-left: calc(var(--spacing) * 3);
@@ -2119,6 +2138,11 @@
       order: 2;
     }
   }
+  .sm\:-mx-6 {
+    @media (width >= 40rem) {
+      margin-inline: calc(var(--spacing) * -6);
+    }
+  }
   .sm\:flex {
     @media (width >= 40rem) {
       display: flex;
@@ -2272,6 +2296,11 @@
     @media (width >= 48rem) {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
+  .lg\:-mx-8 {
+    @media (width >= 64rem) {
+      margin-inline: calc(var(--spacing) * -8);
     }
   }
   .lg\:max-w-3xl {

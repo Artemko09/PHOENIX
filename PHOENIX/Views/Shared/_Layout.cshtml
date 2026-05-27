@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="~/ViewTask.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/app.css" asp-append-version="true" />
 </head>
-<body class="m-0 flex min-h-full flex-col bg-gray-50">
+<body class="m-0 flex min-h-full flex-col bg-slate-50 text-gray-900">
 
     <header>
         <nav class="fixed top-0 left-0 z-50 w-full border-b bg-[#2c2e35] p-2.5 shadow sm:flex sm:items-center sm:justify-between">
@@ -26,104 +26,57 @@
 
             <div class="hidden w-full justify-between sm:inline-flex">
                 <ul class="mb-0 hidden list-none space-x-6 sm:flex sm:items-center">
-                    <li>
-                        <a class="text-white !no-underline" style="text-decoration: none !important;" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
-                    </li>
-                    <li>
-                        <a class="text-white !no-underline" style="text-decoration: none !important;" asp-area="" asp-controller="Home" asp-action="Privacy">Про нас</a>
-                    </li>
-                    <li>
-                        <a class="text-white !no-underline" style="text-decoration: none !important;" asp-area="" asp-controller="Rating" asp-action="Index">Рейтинг</a>
-                    </li>
-                    <li>
-                        <a class="flex items-center gap-1 text-white !no-underline" style="text-decoration: none !important;" asp-area="" asp-controller="News" asp-action="Index">
-                            <i class="bi bi-newspaper"></i> Новини
-                        </a>
-                    </li>
+                    <li><a class="text-white !no-underline" style="text-decoration: none !important;" asp-area="" asp-controller="Home" asp-action="Index">Головна</a></li>
+                    <li><a class="text-white !no-underline" style="text-decoration: none !important;" asp-area="" asp-controller="Home" asp-action="Privacy">Про нас</a></li>
+                    <li><a class="text-white !no-underline" style="text-decoration: none !important;" asp-area="" asp-controller="Rating" asp-action="Index">Рейтинг</a></li>
+                    <li><a class="flex items-center gap-1 text-white !no-underline" style="text-decoration: none !important;" asp-area="" asp-controller="News" asp-action="Index"><i class="bi bi-newspaper"></i> Новини</a></li>
 
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li><a class="fw-bold text-white !no-underline" style="text-decoration: none !important;" asp-controller="Account" asp-action="Profile">👤 @(user?.Name ?? User.Identity.Name)</a></li>
                         <li>
-                            <a class="fw-bold text-white !no-underline" style="text-decoration: none !important;" asp-controller="Account" asp-action="Profile">
-                                👤 @(user?.Name ?? User.Identity.Name)
-                            </a>
-                        </li>
-                        <li>
-                            <form asp-controller="Account" asp-action="Logout" method="post" class="form-inline m-0">
-                                <button type="submit" class="p-0 text-white !no-underline" style="border:none; background:none; text-decoration: none !important;">
-                                    Вийти
-                                </button>
+                            <form asp-controller="Account" asp-action="Logout" method="post" class="m-0">
+                                <button type="submit" class="p-0 text-white !no-underline" style="border:none; background:none; text-decoration: none !important;">Вийти</button>
                             </form>
                         </li>
                     }
                     else
                     {
-                        <li>
-                            <a class="text-white !no-underline" style="text-decoration: none !important;" asp-controller="Account" asp-action="Register">Реєстрація</a>
-                        </li>
-                        <li>
-                            <a class="text-white !no-underline" style="text-decoration: none !important;" asp-controller="Account" asp-action="Login">Вхід</a>
-                        </li>
+                        <li><a class="text-white !no-underline" style="text-decoration: none !important;" asp-controller="Account" asp-action="Register">Реєстрація</a></li>
+                        <li><a class="text-white !no-underline" style="text-decoration: none !important;" asp-controller="Account" asp-action="Login">Вхід</a></li>
                     }
 
                     @if (User.IsInRole("Admin"))
                     {
-                        <li>
-                            <a asp-controller="Admin" asp-action="Users" style="text-decoration: none !important;"
-                               class="text-sm font-bold tracking-wider text-amber-400 uppercase !no-underline hover:text-amber-500">
-                                Спортсмени
-                            </a>
-                        </li>
+                        <li><a asp-controller="Admin" asp-action="Users" style="text-decoration: none !important;" class="text-sm font-bold tracking-wider text-amber-400 uppercase !no-underline hover:text-amber-500">Спортсмени</a></li>
                     }
                 </ul>
             </div>
         </nav>
     </header>
 
-    <div class="w-full flex-grow">
-        <main role="main" class="animate-fade-in mx-auto max-w-7xl px-4 pt-24 sm:px-6 lg:px-8">
-            @RenderBody()
-        </main>
+    <div class="w-full flex-grow pt-28 pb-12">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <main role="main" class="animate-fade-in">
+                @RenderBody()
+            </main>
+        </div>
     </div>
 
     <footer class="mt-auto w-full border-t border-gray-900 bg-gray-950 py-6 text-gray-400">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-
                 <div class="text-center md:text-left">
-                    <p class="m-0 text-sm tracking-wide">
-                        &copy; 2026 <span class="ml-1 font-bold tracking-wider text-white uppercase">СК «ФЕНІКС»</span>.
-                        Всі права захищені.
-                    </p>
-                    <p class="m-0 mt-1 text-xs text-gray-600">
-                        Інформаційна система моніторингу рейтингу атлетів «Phoenix»
-                    </p>
-                    <p class="m-0 mt-1 text-xs font-medium tracking-wide text-gray-500">
-                        Розробка та архітектура: <span class="font-semibold text-red-500">Bottarte</span>
-                    </p>
+                    <p class="m-0 text-sm tracking-wide">&copy; 2026 <span class="ml-1 font-bold tracking-wider text-white uppercase">СК «ФЕНІКС»</span>. Всі права захищені.</p>
+                    <p class="m-0 mt-1 text-xs text-gray-600">Інформаційна система моніторингу рейтингу атлетів «Phoenix»</p>
+                    <p class="m-0 mt-1 text-xs font-medium tracking-wide text-gray-500">Розробка та архітектура: <span class="font-semibold text-red-500">Bottarte</span></p>
                 </div>
-
                 <div class="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
-                    <a asp-area="" asp-controller="Home" asp-action="Privacy"
-                       style="text-decoration: none !important;"
-                       class="text-gray-400 transition-colors duration-200 hover:text-red-500 hover:no-underline">
-                        Про нас
-                    </a>
-
-                    <a asp-controller="Rating" asp-action="Index"
-                       style="text-decoration: none !important;"
-                       class="text-gray-400 transition-colors duration-200 hover:text-red-500 hover:no-underline">
-                        Рейтинг клубу
-                    </a>
-
+                    <a asp-area="" asp-controller="Home" asp-action="Privacy" style="text-decoration: none !important;" class="text-gray-400 transition-colors duration-200 hover:text-red-500 hover:no-underline">Про нас</a>
+                    <a asp-controller="Rating" asp-action="Index" style="text-decoration: none !important;" class="text-gray-400 transition-colors duration-200 hover:text-red-500 hover:no-underline">Рейтинг клубу</a>
                     <span class="text-gray-600">|</span>
-                    <a href="mailto:support@phoenix-karate.ua"
-                       style="text-decoration: none !important;"
-                       class="flex items-center text-xs text-gray-500 transition-colors duration-200 hover:text-white hover:no-underline">
-                        support@phoenix-karate.ua
-                    </a>
+                    <a href="mailto:support@phoenix-karate.ua" style="text-decoration: none !important;" class="flex items-center text-xs text-gray-500 transition-colors duration-200 hover:text-white hover:no-underline">support@phoenix-karate.ua</a>
                 </div>
-
             </div>
         </div>
     </footer>
