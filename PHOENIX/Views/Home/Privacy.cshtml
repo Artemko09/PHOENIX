@@ -1,6 +1,92 @@
 ﻿@{
-    ViewData["Title"] = "Privacy Policy";
+    ViewData["Titleblock"] = "Про наш клуб";
+    ViewData["Title"] = "Про нас";
 }
-<h1>@ViewData["Title"]</h1>
 
-<p>Use this page to detail your site's privacy policy.</p>
+<div class="min-h-screen bg-gray-50 px-6 py-16 lg:px-8">
+    <div class="mx-auto max-w-4xl rounded-2xl border border-gray-100 bg-white p-8 shadow-sm sm:p-12">
+
+        <div class="mb-8 border-b border-gray-200 pb-6 text-center sm:text-left">
+            <span class="text-sm font-semibold tracking-wider text-red-600 uppercase">Історія та філософія СК «ФЕНІКС»</span>
+            <h1 class="mt-2 text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                Спортивний Клуб Карате «Фенікс»
+            </h1>
+            <p class="mt-2 text-lg text-gray-500">Сила, дисципліна та постійний розвиток на татамі й поза ним.</p>
+        </div>
+
+        <div class="space-y-12 text-base leading-7 text-gray-600">
+
+            <section class="grid grid-cols-1 items-start gap-6 md:grid-cols-3">
+                <div class="md:col-span-1">
+                    <h2 class="border-l-4 border-red-500 pl-3 text-xl font-extrabold tracking-wide text-gray-900 uppercase">
+                        Наша місія
+                    </h2>
+                </div>
+                <div class="md:col-span-2">
+                    <p class="mb-3 text-lg font-medium text-gray-700">
+                        Ми не просто вчимо битися — ми виховуємо гармонійну особистість.
+                    </p>
+                    <p>
+                        Головна мета СК «Фенікс» — популяризація здорового способу життя, розвиток карате як олімпійського виду спорту та виховання сильного духу у наших вихованців. Через регулярні тренування, систему атестацій на пояси та участь у змаганнях ми вчимо дітей та дорослих дисципліні, повазі та наполегливості в досягненні цілей.
+                    </p>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 items-start gap-6 border-t border-gray-100 pt-8 md:grid-cols-3">
+                <div class="md:col-span-1">
+                    <h2 class="border-l-4 border-red-500 pl-3 text-xl font-extrabold tracking-wide text-gray-900 uppercase">
+                        Напрямки підготовки
+                    </h2>
+                </div>
+                <div class="md:col-span-2">
+                    <ul class="space-y-4">
+                        <li class="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                            <strong class="mb-1 block text-gray-900">Дитяче карате (від 4 років)</strong>
+                            Розвиток координації, гнучкості, загальна фізична підготовка та базова дисципліна в ігровій та адаптивній формі.
+                        </li>
+                        <li class="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                            <strong class="mb-1 block text-gray-900">Спортивне карате (Куміте та Ката)</strong>
+                            Професійна підготовка до всеукраїнських та міжнародних турнірів, вивчення тактики поєдинку та відточування техніки.
+                        </li>
+                        <li class="rounded-xl border border-gray-100 bg-gray-50 p-4">
+                            <strong class="mb-1 block text-gray-900">Традиційне карате та самооборона</strong>
+                            Вивчення філософії бойового мистецтва, техніки загартування тіла та ефективних методів самозахисту для будь-якого віку.
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 items-start gap-6 border-t border-gray-100 pt-8 md:grid-cols-3">
+                <div class="md:col-span-1">
+                    <h2 class="border-l-4 border-red-500 pl-3 text-xl font-extrabold tracking-wide text-gray-900 uppercase">
+                        Цифрова екосистема
+                    </h2>
+                </div>
+                <div class="md:col-span-2">
+                    <p class="mb-4">
+                        Наш клуб крокує в ногу з часом, тому ми розробили та впровадили внутрішню інформаційну систему, яка інтегрована в цей веб-сайт. Вона дозволяє автоматизувати більшість процесів управління клубом:
+                    </p>
+                    <div class="space-y-2 rounded-xl border border-red-100 bg-red-50 p-5 text-sm text-gray-700">
+                        <p class="flex items-center gap-2">✔ <span class="font-semibold text-gray-950">Точний віковий розподіл:</span> Система сама вираховує вік спортсмена до дня народження для точного формування турнірних категорій.</p>
+                        <p class="flex items-center gap-2">✔ <span class="font-semibold text-gray-950">Лідерборди клубу:</span> Кожен атлет заробляє бали за медалі, іспити та відвідування, що відображається в інтерактивному рейтингу.</p>
+                        <p class="flex items-center gap-2">✔ <span class="font-semibold text-gray-950">Контроль рангів:</span> Ведеться чіткий облік ступенів (Кю та Дан) від білого до чорного пояса.</p>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-8 sm:flex-row">
+            <a asp-controller="Home" asp-action="Index" style="text-decoration: none !important;" class="order-2 text-sm font-semibold text-gray-600 transition-colors duration-200 hover:text-red-600 hover:no-underline sm:order-1">
+                ← На головну
+            </a>
+
+            <div class="order-1 flex gap-4 sm:order-2">
+                <a asp-controller="Account" asp-action="Register" style="text-decoration: none !important;" class="rounded-md bg-red-600 px-4 py-2 text-sm font-bold tracking-wide text-white uppercase shadow-sm transition-all duration-200 hover:bg-red-500 hover:no-underline">
+                    Стати частиною клубу
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -2,41 +2,116 @@
     ViewData["Title"] = "Карате Клуб Фенікс";
 }
 
-@*  <div class="relative h-screen w-full overflow-hidden">
-    <!-- Фонове зображення із затемненням через градієнт -->
-    <div class="absolute inset-0 z-0 bg-cover bg-center"
-         style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), url('/images/karate-bg.jpg');">
+<div class="relative flex min-h-[85vh] items-center overflow-hidden bg-gray-900 text-white">
+    <div class="absolute inset-0 scale-105 bg-cover bg-center opacity-40 mix-blend-multiply transition-transform duration-10000 ease-out"
+         style="background-image: url('https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=1920');">
     </div>
 
-    <!-- Контент поверх фону -->
-    <div class="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-        
-        <h2 class="mb-2 text-xl font-bold tracking-widest text-red-600 uppercase md:text-2xl">
-            Кіхон • Куміте • Ката
-        </h2>
-        
-        <h1 class="mb-6 text-5xl font-black text-white uppercase italic md:text-7xl">
-            Карате Клуб <span class="text-red-600">Фенікс</span>
-        </h1>
-        
-        <p class="mb-8 max-w-2xl text-lg text-gray-200 md:text-xl">
-            Відроди в собі силу волі та дисципліну. Стань частиною команди професіоналів уже сьогодні.
-        </p>
+    <div class="absolute inset-0 bg-gradient-to-r from-gray-950 via-gray-900/80 to-transparent"></div>
 
-        <div class="flex gap-4">
-            <a href="#join" class="rounded-full bg-red-600 px-8 py-3 font-bold text-white transition duration-300 hover:bg-red-700">
-                Записатись на тренування
-            </a>
-            <a href="#about" class="rounded-full border-2 border-white px-8 py-3 font-bold text-white transition duration-300 hover:bg-white hover:text-black">
-                Про клуб
-            </a>
+    <div class="relative z-10 mx-auto w-full max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+        <div class="max-w-2xl lg:max-w-3xl">
+            <span class="mb-6 inline-flex items-center rounded-md bg-red-500/10 px-3 py-1 text-sm font-medium tracking-wider text-red-400 uppercase ring-1 ring-red-500/20 ring-inset">
+                Спортивний Клуб Карате
+            </span>
+            <h1 class="text-4xl font-extrabold tracking-tight text-white uppercase sm:text-6xl">
+                ФЕНІКС <span class="text-red-500">PHOENIX</span>
+            </h1>
+            <p class="mt-6 text-xl leading-8 text-gray-300">
+                Виховуємо чемпіонів, гартуємо характер, розвиваємо силу духу та тіла. Стань частиною команди, яка перемагає на татамі та в житті.
+            </p>
+            <div class="mt-10 flex items-center gap-x-6">
+                <a href="#about" style="text-decoration: none !important;" class="rounded-md bg-red-600 px-5 py-3 text-base font-semibold tracking-wide text-white uppercase shadow-sm transition-all duration-200 hover:bg-red-500">
+                    Про Клуб
+                </a>
+                <a asp-controller="Rating" asp-action="Index" style="text-decoration: none !important;" class="flex items-center gap-2 text-base leading-6 font-semibold tracking-wide text-white uppercase transition-colors duration-200 hover:text-red-400">
+                    Переглянути Рейтинг <span aria-hidden="true">→</span>
+                </a>
+            </div>
         </div>
     </div>
-</div> 
+</div>
 
-<!-- Наступна секція (щоб було видно перехід) -->
-<section id="about" class="bg-white py-20">
-    <div class="container mx-auto px-4">
-        <h2 class="text-center text-3xl font-bold">Чому обирають нас?</h2>
+<section id="about" class="bg-white py-24">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+
+            <div>
+                <h2 class="text-base leading-7 font-semibold tracking-wider text-red-600 uppercase">Про нас</h2>
+                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Шлях воїна починається тут</p>
+                <p class="mt-6 text-lg leading-8 text-gray-600">
+                    Клуб «Фенікс» — це не просто спортивна секція. Це велика родина, де кожен атлет отримує професійний підхід, індивідуальну програму розвитку та підтримку досвідчених тренерів. Ми практикуємо сучасні методики підготовки до змагань будь-якого рівня.
+                </p>
+
+                <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+                    <div class="relative pl-9">
+                        <dt class="inline font-bold text-gray-900">
+                            <span class="absolute top-1 left-1 text-xl font-black text-red-500">✓</span>
+                            Досвідчені тренери.
+                        </dt>
+                        <dd class="inline"> Майстри з чорними поясами (високі Дани) та діючі спортсмени з багаторічним досвідом викладання.</dd>
+                    </div>
+                    <div class="relative pl-9">
+                        <dt class="inline font-bold text-gray-900">
+                            <span class="absolute top-1 left-1 text-xl font-black text-red-500">✓</span>
+                            Рейтингова система.
+                        </dt>
+                        <dd class="inline"> Унікальний моніторинг досягнень, що мотивує вихованців рости, заробляти бали та очолювати лідерборди клубу.</dd>
+                    </div>
+                </dl>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div class="space-y-4">
+                    <img class="h-64 w-full rounded-2xl object-cover shadow-md grayscale filter transition-all duration-300 hover:grayscale-0 sm:h-80"
+                         src="https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&q=80&w=1920" alt="Змагання">
+                </div>
+                <div class="space-y-4 pt-8">
+                    <img class="h-64 w-full rounded-2xl object-cover shadow-md grayscale filter transition-all duration-300 hover:grayscale-0 sm:h-80"
+                         src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?auto=format&fit=crop&q=80&w=600" alt="Карате діти">
+                    <img class="h-48 w-full rounded-2xl object-cover shadow-md grayscale filter transition-all duration-300 hover:grayscale-0 sm:h-64"
+                         src="https://images.unsplash.com/photo-1549576490-b0b4831ef60a?auto=format&fit=crop&q=80&w=600" alt="Нагороди">
+                </div>
+            </div>
+
+        </div>
     </div>
-</section> *@
+</section>
+
+<div class="bg-gray-950 py-16">
+    <div class="mx-w-7xl mx-auto px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-x-8 gap-y-16 text-center lg:grid-cols-3">
+            <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                <dd class="text-5xl font-black tracking-tight text-white">10+</dd>
+                <dt class="text-base leading-7 font-semibold tracking-wider text-gray-400 uppercase">Років досвіду</dt>
+            </div>
+            <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                <dd class="text-5xl font-black tracking-tight text-red-500">200+</dd>
+                <dt class="text-base leading-7 font-semibold tracking-wider text-gray-400 uppercase">Активних атлетів</dt>
+            </div>
+            <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+                <dd class="text-5xl font-black tracking-tight text-white">500+</dd>
+                <dt class="text-base leading-7 font-semibold tracking-wider text-gray-400 uppercase">Медалей виграно</dt>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="bg-red-600">
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:px-12 sm:py-24 lg:px-16">
+        <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+            <h2 class="text-3xl font-extrabold tracking-tight text-white uppercase sm:text-4xl">Готовий випробувати себе?</h2>
+            <p class="mt-4 text-lg leading-6 text-red-100">
+                Зареєструйся в нашій системі, щоб відстежувати свої досягнення, заробляти бали на тренуваннях і змаганнях та підніматися вгору в рейтингу клубу «Фенікс».
+            </p>
+            <div class="mt-10 flex gap-4">
+                <a asp-controller="Account" asp-action="Register" style="text-decoration: none !important;" class="rounded-md bg-white px-6 py-3 text-base font-bold tracking-wide text-red-600 uppercase shadow-sm transition-all duration-200 hover:bg-red-50">
+                    Приєднатися
+                </a>
+                <a asp-controller="Account" asp-action="Login" style="text-decoration: none !important;" class="rounded-md border-2 border-white px-6 py-3 text-base font-bold tracking-wide text-white uppercase transition-all duration-200 hover:bg-white/10">
+                    Увійти
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

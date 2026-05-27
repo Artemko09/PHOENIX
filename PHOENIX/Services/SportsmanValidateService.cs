@@ -1,8 +1,6 @@
-﻿using Azure;
-using PHOENIX.Data;
+﻿using PHOENIX.Data;
 using PHOENIX.Interface;
 using PHOENIX.Models;
-using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 
 namespace PHOENIX.Services
